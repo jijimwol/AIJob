@@ -1,0 +1,78 @@
+*{
+    margin:0;
+    padding:0;
+}
+.logo p
+{
+    color: green;
+}
+.area
+{
+    width:400px;
+    height: 400px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+   justify-content: center;
+   align-items: center;
+   background-color: rgb(252, 249, 246);
+   padding:30px;
+   border-radius: 20%;;
+   opacity: 0.7;
+}
+.area:hover
+{
+ opacity: 10;
+}
+.btn1
+{
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.btn1 button
+{
+    margin:10px;
+}
+.btn1 button:hover
+{
+ background-color: rgba(33, 94, 137, 0.301);
+}
+.login input{
+    border-color: rgb(94, 123, 250);
+    border-width: 2px;
+    border-radius: 10%;
+}
+.login button
+{
+  margin-left: 110px;
+  margin-top: 30px;
+}
+.register button
+{
+  margin-left: 110px;
+  margin-top: 0px;
+}
+.register input{
+    border-color: rgb(94, 123, 250);
+    border-width: 2px;
+    border-radius: 10%;
+}
+.alert
+{
+    align-items: center;
+    justify-content: center;
+    display: flex; 
+}
+@media(max-width:800px)
+{
+.area{
+    margin-left: auto; /* Centered for smaller screens */ margin-right: auto;
+}
+body{
+    background-repeat: no-repeat;
+    background-position: center ;
+    background-size: auto;
+}
+}

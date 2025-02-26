@@ -1,0 +1,194 @@
+            {% load static %}
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <title>Interview Preparation</title>
+
+                <!-- Bootstrap & Custom Styles -->
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+                <style>
+                    body {
+                        font-family: 'Poppins', sans-serif;
+                        background-color: #f5f7fa;
+                    }
+
+                    /* Navbar */
+                    .navbar {
+                        background-color: #283593 !important;
+                    }
+                    .navbar-brand, .nav-link {
+                        color: #fff !important;
+                    }
+                    .navbar-toggler {
+                        border-color: #fff;
+                    }
+                    .nav-link:hover {
+                        color: #ffeb3b !important;
+                    }
+
+                    /* Main Section */
+                    .form-container {
+                        max-width: 650px;
+                        background: white;
+                        padding: 25px;
+                        border-radius: 10px;
+                        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+                    }
+
+                    .btn-custom {
+                        width: 100%;
+                        padding: 10px;
+                        border-radius: 8px;
+                        font-size: 16px;
+                    }
+                    .btn-custom:hover {
+                        transform: scale(1.05);
+                    }
+
+                    .answer-box {
+                        background: #e3f2fd;
+                        padding: 15px;
+                        border-radius: 10px;
+                        font-size: 16px;
+                        margin-top: 10px;
+                    }
+
+                    /* About Section */
+                    #ABOUT {
+                        background: #ffffff;
+                        padding: 80px 20px;
+                    }
+                    #ABOUT h2, #cont h2 {
+                        text-decoration: underline;
+                        color: #1e88e5;
+                        text-align: center;
+                    }
+
+                    /* Contact Section */
+                    .contact-container {
+                        background: #e3f2fd;
+                        padding: 50px;
+                        border-radius: 10px;
+                    }
+
+                    .contact-form input, .contact-form textarea {
+                        width: 100%;
+                        padding: 10px;
+                        margin-top: 10px;
+                        border-radius: 5px;
+                        border: 1px solid #ccc;
+                    }
+                </style>
+            </head>
+
+            <body>
+
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <div class="container">
+                        <a class="navbar-brand" href="{% url 'home' %}">
+                            <img src="{% static 'img/logo.png' %}" style="height: 40px; width:40px;"> Interview Prep
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item"><a class="nav-link" href="#ABOUT">About</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#cont">Contact</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'summary' %}">Summary</a></li>
+                                <li class="nav-item"><a class="nav-link btn btn-warning text-dark px-3" href="{% url 'login' %}">Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Interview Question Form -->
+                <div class="container mt-5">
+                    <form method="POST" class="form-container">
+                        {% csrf_token %}
+                        <h3 class="text-center">Generate Interview Question</h3>
+                        <div class="mb-3">
+                            <label for="domain" class="form-label">Domain:</label>
+                            {{ question_form.domain }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="job_description" class="form-label">Job Description:</label>
+                            {{ question_form.job_description }}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-custom" name="generate_question">Generate Question</button>
+                        <button type="submit" class="btn btn-secondary btn-custom mt-2" name="try_another_question">Try Another Question</button>
+                    </form>
+                </div>
+
+                <!-- Display Generated Question -->
+                {% if question %}
+                <div class="container mt-4 form-container">
+                    <h3>Interview Question:</h3>
+                    <p class="answer-box">{{ question }}</p>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="practice_id" value="{{ practice_id }}">
+                        <div class="mb-3">
+                            <textarea name="user_answer" class="form-control" placeholder="Type your answer here..." required></textarea>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-success btn-custom" name="submit_answer">Submit Answer</button>
+                            <button type="submit" class="btn btn-info btn-custom" name="get_suggested_answer">Get Suggested Answer</button>
+                        </div>
+                    </form>
+                </div>
+                {% endif %}
+
+                <!-- Suggested Answer & Feedback -->
+                {% if suggested_answer or feedback %}
+                <div class="container mt-4 form-container">
+                    {% if suggested_answer %}
+                    <h3>Suggested Answer:</h3>
+                    <p class="answer-box">{{ suggested_answer }}</p>
+                    {% endif %}
+                    {% if feedback %}
+                    <h3>AI Feedback:</h3>
+                    <p class="answer-box">{{ feedback }}</p>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!-- About Section -->
+                <section id="ABOUT">
+                    <div class="container">
+                        <h2>ABOUT</h2>
+                        <p class="text-center">
+                            Are you preparing for a job interview? Our AI-powered platform helps you practice real interview questions tailored to your job role, receive instant feedback, and improve your skills.
+                            <br>Boost your confidence with real interview scenarios, actionable feedback, and a personalized learning experience!
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section id="cont">
+                    <div class="container contact-container">
+                        <h2>Contact Us</h2>
+                        <p class="text-center">Have questions? Reach out to us!</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <iframe src="https://www.google.com/maps/embed..." width="100%" height="300px" style="border: 2px solid blue;"></iframe>
+                            </div>
+                            <div class="col-md-6">
+                                <form class="contact-form">
+                                    <input type="text" placeholder="Your Name">
+                                    <input type="email" placeholder="Your Email">
+                                    <textarea placeholder="Your Message" rows="4"></textarea>
+                                    <button type="submit" class="btn btn-primary w-100 mt-2">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </body>
+            </html>

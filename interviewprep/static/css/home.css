@@ -1,0 +1,291 @@
+*
+{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Times New Roman', Times, serif;
+}
+html
+{
+  scroll-behavior: smooth;
+}
+.collapse
+{
+    padding-left: 65%;
+    
+}
+.navbar
+{
+    box-shadow: 10px 0px 4px rgba(84, 54, 254, 0.541);
+    position: fixed;
+    z-index: 1;
+}
+.navbar:hover{
+    height: 70px;
+}
+.nav-item:hover
+{
+    border: 2px solid rgb(77, 245, 77);
+    border-radius: 20%;;
+}
+.intro
+{
+    height:25vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.carousel h2
+{
+ color:green
+}
+.carousel-inner
+{
+    padding-top:60px;
+}
+.field_heading
+{
+    justify-content: center;
+    align-items: center;
+    display: flex;  
+    margin-bottom: 30px;
+}
+.field_heading h4 
+{
+     position: relative;
+      display: inline-block;
+       color: rgb(56, 56, 229); /* Text color */
+}
+.field_heading h4::before
+{   
+    content:"";
+    position: absolute;
+    width:0;
+    height: 2px;
+    bottom:-5px;
+    left:50%;
+    border-bottom: 2px double rgb(36, 36, 202);
+    transition:all 0.5s ease-out;
+    box-shadow: 2px 2px 5px rgba(66, 23, 176, 0.5);
+}
+.field_heading h4:hover::before
+{
+    width:100%;
+    left:0;
+}
+.field_btn
+{
+    justify-content: center;
+    align-items: center;
+    display: flex;  
+    padding: 30px;
+}
+.field_btn button
+{
+    color: white;
+    background-color: rgb(92, 92, 239);
+    padding: 5px;
+    border-radius: 10px;
+}
+.field
+{
+ max-height:400px;
+ margin-bottom: 30px;
+}
+.discription
+{
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 40px;
+}
+.des h5
+{
+    color:rgb(70, 70, 245);
+}
+.des h5 strong
+{
+    color:red;
+}
+.discription textarea
+{
+    max-height:500px;
+    width:700px;
+    border: 2px solid rgb(70, 70, 245);
+   
+    background-color: rgba(192, 186, 179, 0.039);
+}
+.start-btn
+{
+   margin-top:50px;
+   margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.start-btn button{
+    padding: 10px;;
+    background-color: rgb(70, 70, 245);
+    border-width: 1px;
+    color:white;
+    border-radius: 5%;
+    
+}
+.start-btn button:hover{
+    background-color: rgb(56, 212, 32);
+    border-width: 1px;
+}
+.resume_heading
+{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.resume_heading h5
+{
+    color: rgb(86, 83, 241);
+}
+.resume_area
+{
+    width:100%;
+    max-height:700px
+}
+.resume_file 
+{
+ 
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.res
+{
+    width: 700px;
+    height:200px;
+    border: 2px solid rgba(22, 52, 188, 0.63);
+    justify-content:end;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+   
+}
+.question h5
+{
+    margin-top: 10px;
+    color: rgb(70, 70, 245);
+    justify-content:center;
+    align-items: center;
+    display: flex;
+}
+.qbox 
+{
+    justify-content:center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    min-height:100px;
+    margin-bottom: 30px;
+}
+.qbox textarea
+{
+    width: 700px;;
+    min-height:100px;
+}
+.main_area
+{
+    justify-content:center;
+    align-items: center;
+    display: flex;  
+    flex-direction: column;
+}
+.ans_method a
+{
+    text-decoration: none;
+}
+.answeretypeopt
+{
+    width:800px;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    min-height:100px;
+}
+.typeans
+{
+    justify-content: center;
+    align-items: center;
+    display:flex;
+}
+
+.card{
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    box-shadow: 0px 10px 10px rgb(200, 200, 235);
+}
+.card-header
+{
+    width:100%;
+    padding-left:70px;
+}
+.column input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+  
+ .column input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+ .column input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  /* Style the container/contact section */
+  .container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px;
+  }
+  
+  /* Create two columns that float next to eachother */
+  .column {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
+    color:blue
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .column, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+     .row{
+        display:block;
+     }
+  }
+  
