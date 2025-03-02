@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interview Practice</title>
     <style>
-        /* 🔹 General Page Styling */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -30,7 +29,6 @@
             color: #333;
         }
 
-        /* 🔹 Forms & Input Styling */
         label {
             font-weight: bold;
             display: block;
@@ -52,7 +50,6 @@
             resize: none;
         }
 
-        /* 🔹 Buttons */
         .btn {
             display: inline-block;
             width: 100%;
@@ -79,7 +76,6 @@
             background: #218838;
         }
 
-        /* 🔹 Question, Feedback, and Answer Boxes */
         .box {
             margin-top: 20px;
             padding: 15px;
@@ -106,27 +102,39 @@
 <div class="container">
     <h2>🔹 Interview Practice Dashboard</h2>
 
-    <!-- 🔹 Generate Question Form -->
     <form method="POST">
         {% csrf_token %}
         <label for="domain">Domain:</label>
-        {{ question_form.domain }}
+        <select id="domain" name="domain" onchange="updateJobDescription()">
+            <option value="" data-description="">Select a domain</option>
+            <option value="Software Engineer" data-description="Develop and maintain software applications.">Software Engineer</option>
+            <option value="Frontend Developer" data-description="Build interactive user interfaces using HTML, CSS, and JavaScript frameworks.">Frontend Developer</option>
+            <option value="Backend Developer" data-description="Develop server-side logic, databases, and APIs for web applications.">Backend Developer</option>
+            <option value="Full-Stack Developer" data-description="Work on both frontend and backend of web applications.">Full-Stack Developer</option>
+            <option value="Data Scientist" data-description="Analyze large datasets, build predictive models, and extract insights.">Data Scientist</option>
+            <option value="AI/ML Engineer" data-description="Develop machine learning models and AI solutions.">AI/ML Engineer</option>
+            <option value="DevOps Engineer" data-description="Automate software development and deployment using CI/CD pipelines.">DevOps Engineer</option>
+            <option value="Cybersecurity Analyst" data-description="Ensure the security of systems and protect data from cyber threats.">Cybersecurity Analyst</option>
+            <option value="Cloud Engineer" data-description="Design, implement, and manage cloud computing solutions.">Cloud Engineer</option>
+            <option value="Database Administrator" data-description="Manage and optimize databases to ensure data integrity and security.">Database Administrator</option>
+            <option value="UI/UX Designer" data-description="Design intuitive and engaging user interfaces and experiences.">UI/UX Designer</option>
+            <option value="Network Engineer" data-description="Design, implement, and manage network infrastructure.">Network Engineer</option>
+            <option value="Embedded Systems Engineer" data-description="Develop software and firmware for embedded systems.">Embedded Systems Engineer</option>
+        </select>
         
         <label for="job_description">Job Description:</label>
-        {{ question_form.job_description }}
+        <textarea id="job_description" name="job_description" readonly></textarea>
 
         <button type="submit" class="btn" name="generate_question">Generate Question</button>
         <button type="submit" class="btn btn-secondary" name="try_another_question">Try Another Question</button>
     </form>
 
-    <!-- 🔹 Display Generated Question -->
     {% if question %}
         <div class="box question-box">
             <h3>💡 Interview Question:</h3>
             <p>{{ question }}</p>
         </div>
 
-        <!-- 🔹 Answer Submission Form -->
         <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="practice_id" value="{{ practice_id }}">
@@ -137,7 +145,6 @@
             <button type="submit" class="btn" name="submit_answer">Submit Answer</button>
         </form>
 
-        <!-- 🔹 Display Feedback -->
         {% if feedback %}
             <div class="box feedback-box">
                 <h3>✅ Feedback:</h3>
@@ -145,21 +152,18 @@
             </div>
         {% endif %}
 
-        <!-- 🔹 Try More Button -->
         <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="practice_id" value="{{ practice_id }}">
             <button type="submit" class="btn btn-secondary" name="try_more">Try More</button>
         </form>
 
-        <!-- 🔹 Get Suggested Answer -->
         <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="practice_id" value="{{ practice_id }}">
             <button type="submit" class="btn" name="get_suggested_answer">Get Suggested Answer</button>
         </form>
 
-        <!-- 🔹 Display Suggested Answer -->
         {% if suggested_answer %}
             <div class="box answer-box">
                 <h3>📌 Suggested Answer:</h3>
@@ -168,6 +172,14 @@
         {% endif %}
     {% endif %}
 </div>
+
+<script>
+    function updateJobDescription() {
+        var domainSelect = document.getElementById("domain");
+        var jobDescription = domainSelect.options[domainSelect.selectedIndex].getAttribute("data-description");
+        document.getElementById("job_description").value = jobDescription;
+    }
+</script>
 
 </body>
 </html>

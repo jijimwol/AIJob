@@ -218,3 +218,12 @@ def clear_history(request):
             messages.info(request, "No interview history found.")
             
         return redirect("summary")
+from django.http import JsonResponse
+from .models import Job
+
+def get_job_description(request, job_id):
+    try:
+        job = Job.objects.get(id=job_id)
+        return JsonResponse({"description": job.description})
+    except Job.DoesNotExist:
+        return JsonResponse({"error": "Job not found"}, status=404)
